@@ -25,7 +25,7 @@ def main():
     print(quote_url)
     currency_quotes = requests.get(quote_url).json()
     currency_list = []
-    
+
     #building a graph
     for currency in currency_quotes:
         currency_1 = currency['symbol'][:3]
@@ -36,6 +36,20 @@ def main():
             currency_list.append(currency_2)
 
     print(currency_list)
+
+    number_of_currency = len(currency_list)
+    rate_matrix = [[0 for x in range(number_of_currency)] for y in range(number_of_currency)]
+
+    for i in range(number_of_currency):
+        for j in range(number_of_currency):
+            if i == j:
+                rate_matrix[i][j] = 0
+            else:
+                currency_symbol = currency_list[i] + currency_list[j]
+                quote_item = next(item for item in currency_quotes if item["symbol"] == currency_symbol)
+                rate_matrix[i][j] = quote_item['price']
+
+    print(rate_matrix)
 
 
 
