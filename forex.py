@@ -1,5 +1,6 @@
 import json
 import requests
+import math
 
 ApiKey = 'lPpKLU2BhzWU3eB2iWHeZ0XG5fO241JP'
 base_url = 'http://forex.1forge.com/1.0.3/'
@@ -48,6 +49,11 @@ def main():
                 currency_symbol = currency_list[i] + currency_list[j]
                 quote_item = next(item for item in currency_quotes if item["symbol"] == currency_symbol)
                 rate_matrix[i][j] = quote_item['price']
+
+    for i in range(number_of_currency):
+        for j in range(number_of_currency):
+            if i != j:
+                rate_matrix[i][j] = -math.log(rate_matrix[i][j])
 
     print(rate_matrix)
 
