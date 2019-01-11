@@ -50,12 +50,15 @@ def main():
                 quote_item = next(item for item in currency_quotes if item["symbol"] == currency_symbol)
                 rate_matrix[i][j] = quote_item['price']
 
+    #revert each edge to negative logrithmic
     for i in range(number_of_currency):
         for j in range(number_of_currency):
             if i != j:
                 rate_matrix[i][j] = -math.log(rate_matrix[i][j])
 
     print(rate_matrix)
+
+    #implement bellmanford for detecting abitrage
 
 
 
