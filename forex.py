@@ -15,6 +15,9 @@ def get_currency_quotes():
     currency_quotes = requests.get(quote_url).json()
     return currency_quotes
 
+def bellmanford_forex_abitrage(rate_matrix, currency_list):
+    
+
 def main():
     quote_url = 'http://forex.1forge.com/1.0.3/quotes?pairs='
     response = requests.get(base_url + 'symbols?' + 'api_key=' + ApiKey)
@@ -58,7 +61,10 @@ def main():
 
     print(rate_matrix)
 
+
     #implement bellmanford for detecting abitrage
+
+
 
 
 
