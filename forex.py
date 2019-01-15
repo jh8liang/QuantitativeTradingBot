@@ -15,8 +15,20 @@ def get_currency_quotes():
     currency_quotes = requests.get(quote_url).json()
     return currency_quotes
 
-def bellmanford_forex_abitrage(rate_matrix, currency_list):
-    
+def bellmanford_forex_abitrage(rate_matrix, currency_list, source_vertex):
+    distance = 0
+    index = 0
+    number_of_currencies = len(currency_list)
+    number_of_edges = (number_of_currencies*(number_of_currencies - 1)) / 2
+    # first find the index in teh currency list this currency belongs
+    for currency in currency_list:
+        if source_vertex == currency:
+            break
+        index += 1
+
+
+
+
 
 def main():
     quote_url = 'http://forex.1forge.com/1.0.3/quotes?pairs='
