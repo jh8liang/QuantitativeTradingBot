@@ -15,11 +15,20 @@ def get_currency_quotes():
     currency_quotes = requests.get(quote_url).json()
     return currency_quotes
 
-def bellmanford_forex_abitrage(rate_matrix, currency_list, source_vertex):
-    distance = 0
+def bellmanford_forex_abitrage(rate_matrix, currency_list, source_vertex_index):
+    distance = []
+    distance[source_vertex_index] = 0
     index = 0
     number_of_currencies = len(currency_list)
-    number_of_edges = (number_of_currencies*(number_of_currencies - 1)) / 2
+    number_of_edges = (number_of_currencies*(number_of_currencies - 1)) / 2 #since it is complete graph
+
+    for i in range(number_of_currencies):
+        if i != source_vertex_index:
+            d[i] = float("inf")
+
+
+    
+
     # first find the index in teh currency list this currency belongs
     for currency in currency_list:
         if source_vertex == currency:
