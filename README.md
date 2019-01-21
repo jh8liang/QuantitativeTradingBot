@@ -1,1 +1,1 @@
-This is the stock recommender for personal investments app
+This is the Quantitative Trading Bot that uses numerous algorithmic strategies
