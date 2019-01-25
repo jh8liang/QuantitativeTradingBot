@@ -26,8 +26,9 @@ def bellmanford_forex_abitrage(rate_matrix, currency_list, source_vertex_index):
         if i != source_vertex_index:
             d[i] = float("inf")
 
-
     
+
+
 
     # first find the index in teh currency list this currency belongs
     for currency in currency_list:
