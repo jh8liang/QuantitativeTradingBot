@@ -1,12 +1,10 @@
 import json
 import requests
 import math
-
-ApiKey = 'lPpKLU2BhzWU3eB2iWHeZ0XG5fO241JP'
-base_url = 'http://forex.1forge.com/1.0.3/'
+from settings import ApiKey, base_url, forex_quote_url
 
 def get_currency_quotes():
-    quote_url = 'http://forex.1forge.com/1.0.3/quotes?pairs='
+    quote_url = forex_quote_url
     list_of_symbols = requests.get(base_url + 'symbols?' + 'api_key=' + ApiKey).json()
 
     for symbol in list_of_symbols:
@@ -20,15 +18,10 @@ def bellmanford_forex_abitrage(rate_matrix, currency_list, source_vertex_index):
     distance[source_vertex_index] = 0
     index = 0
     number_of_currencies = len(currency_list)
-    number_of_edges = (number_of_currencies*(number_of_currencies - 1)) / 2 #since it is complete graph
-
+    number_of_edges = (number_of_currencies*(number_of_currencies - 1)) / 2
     for i in range(number_of_currencies):
         if i != source_vertex_index:
             d[i] = float("inf")
-
-    
-
-
 
     # first find the index in teh currency list this currency belongs
     for currency in currency_list:
@@ -37,11 +30,8 @@ def bellmanford_forex_abitrage(rate_matrix, currency_list, source_vertex_index):
         index += 1
 
 
-
-
-
 def main():
-    quote_url = 'http://forex.1forge.com/1.0.3/quotes?pairs='
+    quote_url = forex_quote_url
     response = requests.get(base_url + 'symbols?' + 'api_key=' + ApiKey)
     list_of_symbols = response.json()
 
@@ -80,15 +70,6 @@ def main():
         for j in range(number_of_currency):
             if i != j:
                 rate_matrix[i][j] = -math.log(rate_matrix[i][j])
-
-    print(rate_matrix)
-
-
-    #implement bellmanford for detecting abitrage
-
-
-
-
 
 if __name__ == '__main__':
 	main()
